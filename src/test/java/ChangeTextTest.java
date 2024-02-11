@@ -12,7 +12,7 @@ import org.junit.jupiter.api.*;
 public class ChangeTextTest {
 
     private AndroidDriver driver;
-    String emptyText = "    ";
+    String emptyText = "     ";
     String newText = "New text";
 
     @BeforeEach
@@ -37,6 +37,7 @@ public class ChangeTextTest {
     public void changeTextToSpaces() {
         var el1 = driver.findElement(AppiumBy.id("ru.netology.testing.uiautomator:id/textToBeChanged"));
         el1.isDisplayed();
+        var expectedText = el1.getText();
         var el2 = driver.findElement(AppiumBy.id("ru.netology.testing.uiautomator:id/userInput"));
         el2.isDisplayed();
         el2.click();
@@ -44,9 +45,8 @@ public class ChangeTextTest {
         var el3 = driver.findElement(AppiumBy.id("ru.netology.testing.uiautomator:id/buttonChange"));
         el3.isDisplayed();
         el3.click();
-        var el4 = driver.findElement(AppiumBy.id("ru.netology.testing.uiautomator:id/textToBeChanged"));
-        el4.isDisplayed();
-        Assertions.assertEquals(el4.getText(), el1.getText());
+        var actualText = el1.getText();
+        Assertions.assertEquals(actualText, expectedText);
     }
 
     @Test
